@@ -25,6 +25,7 @@ const DoB : React.FC<Props> = ({setComplete}) => {
   const handleSubmit = () => {
     if (date !== "") {
       setComplete(true);
+      sessionStorage.setItem("hasDate", "true");
       history.push("/agreement");
     } else {
       setError("Fill in your date of birth!");

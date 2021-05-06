@@ -56,6 +56,7 @@ const Personal : React.FC<Props> = ({setComplete}) => {
       setError("Email is not valid!");
     } else {
       setComplete(true);
+      sessionStorage.setItem("hasPersonal", "true");
       history.push("/dob");      
     }
   }

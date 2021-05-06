@@ -7,8 +7,8 @@ import DoB from './pages/DoB';
 import Agreement from './pages/Agreement';
 
 const App : React.FC = () => {
-  const [hasPersonal, setHasPersonal] = useState<boolean>(false);
-  const [hasDate, setHasDate] = useState<boolean>(false);
+  const [hasPersonal, setHasPersonal] = useState<boolean>(sessionStorage.getItem("hasPersonal") === "true");
+  const [hasDate, setHasDate] = useState<boolean>(sessionStorage.getItem("hasDate") === "true");
 
   return (
     <Router>
@@ -25,7 +25,7 @@ const App : React.FC = () => {
             {!hasPersonal ? <Redirect to="/welcome" /> : <DoB setComplete={setHasDate} />}
           </Route>
           <Route path="/agreement" exact>
-            {!hasPersonal || !hasDate ? <Redirect to="/welcome" /> : <Agreement />}
+            {!hasDate ? <Redirect to="/dob" /> : <Agreement />}
           </Route>
         </Switch>
       </div>
