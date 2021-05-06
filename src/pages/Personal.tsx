@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import Layout from '../components/Layout';
 import InputField from '../components/InputField';
 import FormLayout from '../components/FormLayout';
-import { useHistory } from "react-router-dom";
-import "../styles/Personal.css";
+import FilledButton from "../components/FilledButton";
 
 const Personal : React.FC = () => {
   const [firstName, setFirstName] = useState("");
@@ -50,9 +50,14 @@ const Personal : React.FC = () => {
             setValue={setPassword}
             placeholder="***********"
           />
-          <button className="personal-btn" type="submit">
-            <b>Next</b>
-          </button>
+          <FilledButton 
+            name="Next"
+            submit={true}
+            handleClick={handleSubmit}
+            background="black"
+            width="100%"
+            color="white"
+          />
         </form>
       </FormLayout>
     </Layout>
