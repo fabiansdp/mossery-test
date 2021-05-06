@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import InputField from '../components/InputField';
 import FormLayout from '../components/FormLayout';
 import FilledButton from "../components/FilledButton";
+import Alert from '../components/Alert';
 import "../styles/Personal.css";
 
 const Personal : React.FC = () => {
@@ -11,8 +12,15 @@ const Personal : React.FC = () => {
   const [lastName, setLastName] = useState(sessionStorage.getItem("lastName") || "");
   const [email, setEmail] = useState(sessionStorage.getItem("email") || "");
   const [password, setPassword] = useState(sessionStorage.getItem("password") || "");
+  const [error, setError] = useState<string | null>(null);
 
   const history = useHistory();
+
+  // Email validator
+  const isValidEmail = (email: string) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
 
   // Set data to session storage everytime it changes
   useEffect(() => {
@@ -32,10 +40,18 @@ const Personal : React.FC = () => {
   }, [password]);
 
   const handleSubmit = () => {
-    if (firstName !== "" && lastName !== "" && email !== "" && password !== "") {
-      history.push("/dob");
+    setError(null);
+
+    if (firstName === "") {
+      setError("First name is empty!");
+    } else if (lastName === "") {
+      setError("Last name is empty!");
+    } else if (password === "") {
+      setError("Password is empty!");
+    } else if (!isValidEmail(email)) {
+      setError("Email is not valid!");
     } else {
-      console.log("isi form")
+      history.push("/dob");      
     }
   }
 
@@ -43,6 +59,7 @@ const Personal : React.FC = () => {
     <Layout title="Personal Details" background="#FCE694">
       <div className="content-container">
         <FormLayout title="Enter Personal Details">
+          <Alert error={error} setError={setError} />
           <form onSubmit={(e) => {
             e.preventDefault();
             handleSubmit();
