@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
+import Welcome from './pages/Welcome';
+import Personal from './pages/Personal';
+import DoB from './pages/DoB';
+import Agreement from './pages/Agreement';
 
-function App() {
+const App : React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route exact path="/">
+              <Redirect to="/welcome" />
+          </Route>
+          <Route path="/welcome" exact component={Welcome} />
+          <Route path="/personal" exact component={Personal} />
+          <Route path="/dob" exact component={DoB} />
+          <Route path="/agreement" exact component={Agreement} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
