@@ -1,4 +1,40 @@
 #hero-container {
-  background-color: #ffc15e;
+  padding: 0 3rem;
+  background-color: #ff9f1c;
   height: 100vh;
+  display: flex;
+}
+
+#content-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#content-container h1 {
+  font-family: "Righteous", cursive;
+  font-size: 4rem;
+  color: #ffff;
+  margin-bottom: 2rem;
+}
+
+#content-container button {
+  margin-top: 2rem;
+  width: 50%;
+  padding: 1.5rem 1.5rem;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.5rem;
+  background-color: black;
+}
+
+#image-container img {
+  width: auto;
+  height: 100%;
+}
+
+button b {
+  color: white;
 }
