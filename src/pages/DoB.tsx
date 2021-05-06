@@ -7,7 +7,11 @@ import FilledButton from "../components/FilledButton";
 import Alert from '../components/Alert';
 import "../styles/Personal.css";
 
-const DoB : React.FC = () => {
+interface Props {
+  setComplete: (bool: boolean) => void
+}
+
+const DoB : React.FC<Props> = ({setComplete}) => {
   const [date, setDate] = useState(sessionStorage.getItem("dateOfBirth") || "");
   const [error, setError] = useState<string | null>(null);
 
@@ -20,6 +24,7 @@ const DoB : React.FC = () => {
 
   const handleSubmit = () => {
     if (date !== "") {
+      setComplete(true);
       history.push("/agreement");
     } else {
       setError("Fill in your date of birth!");

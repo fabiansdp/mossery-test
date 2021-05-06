@@ -7,7 +7,11 @@ import FilledButton from "../components/FilledButton";
 import Alert from '../components/Alert';
 import "../styles/Personal.css";
 
-const Personal : React.FC = () => {
+interface Props {
+  setComplete: (bool: boolean) => void
+}
+
+const Personal : React.FC<Props> = ({setComplete}) => {
   const [firstName, setFirstName] = useState(sessionStorage.getItem("firstName") || "");
   const [lastName, setLastName] = useState(sessionStorage.getItem("lastName") || "");
   const [email, setEmail] = useState(sessionStorage.getItem("email") || "");
@@ -51,6 +55,7 @@ const Personal : React.FC = () => {
     } else if (!isValidEmail(email)) {
       setError("Email is not valid!");
     } else {
+      setComplete(true);
       history.push("/dob");      
     }
   }
