@@ -1,0 +1,36 @@
+label {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.4rem;
+  line-height: 1.2rem;
+  display: block;
+  color: #000000;
+  margin-top: 0.8rem;
+}
+
+input {
+  width: 100%;
+  border: none;
+  padding: 0.5rem 0 0.5rem 0;
+  border-bottom: 0.15rem solid black;
+  box-sizing: border-box;
+  background: none;
+  margin: 0.5rem 0 1rem 0;
+}
+
+input[type="text"],
+input[type="password"] {
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: bold;
+}
+
+input:focus {
+  outline: none;
+}
+
+::placeholder {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
