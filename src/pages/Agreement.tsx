@@ -20,6 +20,7 @@ const Agreement : React.FC = () => {
   const [color, setColor] = useState("#ff5252");
 
   const history = useHistory();
+  const {REACT_APP_API} = process.env;
 
   useEffect(() => {
     sessionStorage.setItem("accept", accept);
@@ -37,7 +38,7 @@ const Agreement : React.FC = () => {
         agreement: agreement
       }
 
-      axios.post('https://608f62670294cd001765e745.mockapi.io/api/user', formData)
+      axios.post(`${REACT_APP_API}`, formData)
       .then ((response) => {
         if (response.data) {
           setColor("#39C16C");

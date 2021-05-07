@@ -6,6 +6,10 @@
   height: 100%;
 }
 
+#agreement-container label {
+  text-align: center;
+}
+
 .agreement-content {
   display: flex;
   flex-direction: column;
@@ -29,10 +33,6 @@
   margin: 2rem;
   border: 1px solid black;
   overflow: scroll;
-}
-
-label {
-  text-align: center;
 }
 
 @media (max-width: 800px) {
