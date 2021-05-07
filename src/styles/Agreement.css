@@ -17,6 +17,11 @@
   padding: 2rem;
 }
 
+.agreement-content span {
+  font-size: 4rem;
+  text-align: center;
+}
+
 .agreement-text {
   padding: 1rem;
   width: 75%;
@@ -26,6 +31,16 @@
   overflow: scroll;
 }
 
-span {
-  font-size: 4rem;
+label {
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .agreement-content span {
+    font-size: 3rem;
+  }
+
+  .agreement-text {
+    height: 40vh;
+  }
 }

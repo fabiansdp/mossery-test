@@ -24,3 +24,9 @@
   justify-content: center;
   padding: 2rem;
 }
+
+@media (max-width: 800px) {
+  .title-container span {
+    font-size: 3rem;
+  }
+}

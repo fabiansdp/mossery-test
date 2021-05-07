@@ -42,6 +42,7 @@ const Agreement : React.FC = () => {
         if (response.data) {
           setColor("#39C16C");
           setError("Success! Please check your email!");
+          sessionStorage.clear();
         } else {
           setError("Please Try Again");
         }
@@ -50,7 +51,7 @@ const Agreement : React.FC = () => {
         setError(e.msg);
         return
       }).finally(() => {
-        setTimeout(() => history.push("/welcome"), 3000);
+        setTimeout(() => history.push("/welcome"), 1000);
       })
 
     } else {
