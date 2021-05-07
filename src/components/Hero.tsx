@@ -14,9 +14,9 @@ const Hero : React.FC = () => {
           name="Register"
           submit={false}
           handleClick={() => (history.push("/personal"))}
-          background="black"
+          background="#FEF9FF"
           width="50%"
-          color="white"
+          color="black"
         />
       </div>
       <div id="image-container">

@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 90vh;
+  height: 100%;
   width: 75%;
   border-radius: 15px;
   background: white;
@@ -20,6 +20,7 @@
 .agreement-text {
   padding: 1rem;
   width: 75%;
+  height: 45vh;
   margin: 2rem;
   border: 1px solid black;
   overflow: scroll;

@@ -3,13 +3,15 @@ import "../styles/Alert.css";
 
 interface Props {
   error: string | null;
-  setError: (newValue: string | null) => void
+  setError: (newValue: string | null) => void;
+  color?: string;
   closable?: boolean;
 }
 
 const Alert: React.FC<Props> = ({
   error,
   setError,
+  color = "#ff5252",
   closable = true
 }) => {
   const [close, setClose] = useState(false);
@@ -23,7 +25,7 @@ const Alert: React.FC<Props> = ({
   } else {
     return (
       <>
-        <div id="alert-body">
+        <div id="alert-body" style={{backgroundColor: color}}>
           <p>{error}</p>
           <div
             className={closable ? "" : "d-none"}

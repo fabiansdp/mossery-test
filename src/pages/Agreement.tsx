@@ -1,17 +1,61 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import Layout from '../components/Layout';
 import FilledButton from "../components/FilledButton";
+import Alert from "../components/Alert";
 import "../styles/Agreement.css";
+
+interface FormData {
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+  agreement: boolean
+}
 
 const Agreement : React.FC = () => {
   const [accept, setAccept] = useState(sessionStorage.getItem("accept") || "false");
+  const [error, setError] = useState<string | null>(null);
+  const [color, setColor] = useState("#ff5252");
+
+  const history = useHistory();
 
   useEffect(() => {
     sessionStorage.setItem("accept", accept);
   }, [accept]);
 
   const handleSubmit = () => {
-    console.log(JSON.parse(accept))
+    const agreement = JSON.parse(accept);
+
+    if (agreement) {
+      const formData : FormData = {
+        firstName: sessionStorage.getItem("firstName") || "",
+        lastName: sessionStorage.getItem("lastName") || "",
+        email: sessionStorage.getItem("email") || "",
+        password: sessionStorage.getItem("password") || "",
+        agreement: agreement
+      }
+
+      axios.post('https://608f62670294cd001765e745.mockapi.io/api/user', formData)
+      .then ((response) => {
+        if (response.data) {
+          setColor("#39C16C");
+          setError("Success! Please check your email!");
+        } else {
+          setError("Please Try Again");
+        }
+      })
+      .catch((e) => {
+        setError(e.msg);
+        return
+      }).finally(() => {
+        setTimeout(() => history.push("/welcome"), 3000);
+      })
+
+    } else {
+      setError("Please agree to the terms and conditions");
+    }
   };
 
   return (
@@ -24,6 +68,7 @@ const Agreement : React.FC = () => {
           </div>
           <label htmlFor="terms">I accept the terms and conditions</label>
           <input id="terms" type="radio" value="true" checked={accept === "true"} onChange={(evt) => { setAccept(evt.target.value); }}/>
+          <Alert error={error} setError={setError} color={color} />
           <FilledButton 
             name="Submit"
             submit={false}
